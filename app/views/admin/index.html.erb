@@ -1,0 +1,38 @@
+<% title "Admin" %>
+
+<h2>Current Customers</h2>
+
+<table class="admin" BORDER>
+    <th>Name</th>
+    <th>Twitter</th>
+    <th>Total Spent</th>
+    <th>Influence</th>
+    <th>What They Talk About</th>
+  <% @customers.each do |customer| %>
+  <tr>
+    <td class="name"><%= customer[:name] %></td>
+    <td class="twitter"><%= link_to_twitter_profile(customer[:twitter]) %></td>
+    <td class="total_spent"><%= number_to_currency(customer[:total_spent]) %></td>
+    <td class="trstrank"><%= customer[:trstrank] %></td>
+    <td class="wordbag"><%= customer[:wordbag].join(', ') %></td>
+  </tr>
+  <% end %>
+</table>
+    
+
+<h2>Prospective Customers</h2>
+
+<table class="admin" BORDER>
+    <th>Name</th>
+    <th>Twitter</th>
+    <th>Who's Like Them</th>
+  <% @customers.each do |customer| %>
+  <tr>
+    <td class="name"><%= customer[:name] %></td>
+    <td class="twitter"><%= link_to_twitter_profile(customer[:twitter]) %></td>
+    <td class="strong_links"><%= customer[:strong_links].map { |screen_name| link_to_twitter_profile(screen_name) }.join(', ').html_safe %></td>
+  </tr>
+  <% end %>
+</table>
+    
+

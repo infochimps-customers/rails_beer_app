@@ -113,3 +113,47 @@ section.beer .buyme .price span.discounted {
   border: solid 1px black;
   margin-top: 20px;
 }
+
+table.admin tr {
+    padding-bottom: 25px;
+    }
+
+table.admin td {
+    padding-right: 5px;
+    }
+
+table.admin td.name {
+    width: 18%;
+    }
+
+table.admin td.twitter {
+    width: 15%;
+    }
+
+table.admin td.total_spent {
+    width: 12%;
+    }
+
+table.admin td.trstrank {
+    width: 10&;
+    }
+
+table.admin td.wordbag {
+    width: 45%;    
+    font-size: x-small;
+    }
+
+table.admin td.strong_links {
+    font-size: x-small;
+    }
+
+table.admin th { text-align: left }
+
+div.response {
+    white-space: pre;
+    }
+
+span.demo_param {
+    font-weight: bold;
+    color: red;
+    }

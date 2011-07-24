@@ -48,6 +48,7 @@ class ApplicationController < ActionController::Base
       end
     end.join("&")
     full_path = [path, query_string].join('?')
+    Rails.logger.debug("GET #{full_path}")
     result = Net::HTTP.start("api.infochimps.com") do |http|
       http.get(full_path)
     end

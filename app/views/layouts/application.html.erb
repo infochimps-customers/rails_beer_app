@@ -22,7 +22,7 @@
 	<% @api_responses.each_pair do |full_path, response_data| %>
 	<li>
 	  <p><b><%= response_data[:code] %></b>: <%= full_path %></p>
-	  <pre><%= JSON.pretty_generate(response_data[:body]) %></pre>
+	  <div class="response"><%= highlight_demo_params(JSON.pretty_generate(response_data[:body])) %></div>
 	</li>
 	<% end %>
       </ul>
