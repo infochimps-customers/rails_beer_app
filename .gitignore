@@ -1,0 +1,70 @@
+#
+# Rails specific ignores
+#
+
+# config
+/config/database.yml
+
+# database
+/db/*.sqlite3
+/db/schema.rb
+db/dumps/*
+
+# docs
+.yardoc
+
+# vendor
+.bundle
+/vendor/src/**/*
+
+#
+# Non-Rails specific ignores
+# 
+
+# source control
+.bzr
+.hg
+.svn
+
+# builds
+a.out
+*.o
+*.pyc
+*.so
+*.stackdump
+*.sw?
+
+# editors
+*.tmproj
+*_flymake.*
+.project
+.pydevproject
+.settings
+.tasks-cache
+.rvmrc.*
+
+# typical
+/**/*DONTVERSION*
+/**/*private*
+/**/cache/*
+/log/*
+/tmp/*
+/**/log/*
+/**/tmp/*
+/coverage
+/doc/*
+/pkg/*
+/rdoc/*
+
+# misc
+\#*
+.\#*
+*~
+._*
+.DS_Store
+Icon?
+REVISION
+TAGS*
+nohup.out
+.rvmrc
+pkg/*

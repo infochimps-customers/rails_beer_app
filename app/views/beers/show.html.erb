@@ -1,0 +1,7 @@
+<% title @beer.title %>
+<%= render @beer %>
+<p>
+  <%= link_to "Edit", edit_beer_path(@beer) %> |
+  <%= link_to "Destroy", @beer, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", beers_path %>
+</p>

@@ -1,0 +1,17 @@
+<section class="beer" id="beer_<%= beer.id %>">
+  <div class="image">
+    <img src="<%= beer.image_link %>" width="190px"/>
+  </div>
+  <div class="content">
+    <header>
+      <h1 class="title"><%= link_to(beer.title, beer) %></h1>
+    </header>
+    <p class="description"><%= beer.description %></p>
+    <div class="buyme">
+      <div class="price">
+	<p><%= number_to_currency(beer.price) %></p>
+      </div>
+      <%= button_to("Buy now!", beer_order_path(beer)) %>
+    </div>
+  </div>
+</section>
