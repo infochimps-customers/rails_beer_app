@@ -10,10 +10,23 @@
   <body>
     <div id="container">
       <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>
       <%= content_tag :h1, yield(:title) if show_title? %>
       <%= yield %>
     </div>
+    <% if @api_responses.present? %>
+    <div id="api_responses">
+      <h3>Infochimps API Requests</h3>
+      <ul>
+	<% @api_responses.each_pair do |full_path, response_data| %>
+	<li>
+	  <p><b><%= response_data[:code] %></b>: <%= full_path %></p>
+	  <pre><%= JSON.pretty_generate(response_data[:body]) %></pre>
+	</li>
+	<% end %>
+      </ul>
+    </div>
+    <% end %>
   </body>
 </html>

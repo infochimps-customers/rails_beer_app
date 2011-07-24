@@ -4,6 +4,6 @@
 
 <h2>Today's Featured Beer:</h2>
 
-<%= render @featured_beer %>
+<%= render @featured_beer, :locals => { :discount => @discount } %>
 
 <p>See <%= link_to("all our beers", beers_path) %>.</p>

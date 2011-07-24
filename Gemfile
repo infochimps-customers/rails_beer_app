@@ -7,6 +7,8 @@ gem 'rails', '3.0.7'
 
 gem "mysql2", '< 0.3'
 gem 'nifty-generators'
+gem 'json'
+gem 'chimps'
 
 # Use unicorn as the web server
 # gem 'unicorn'

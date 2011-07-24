@@ -9,7 +9,16 @@
     <p class="description"><%= beer.description %></p>
     <div class="buyme">
       <div class="price">
+	<% case @discount %>
+	<% when :free %>
+	<p><span class="discounted"><%= number_to_currency(beer.price) %></span></p>
+	<p>FREE for <span class="twitter">@<%= @twitter %></span>!</p>
+	<% when :half %>
+	<p><span class="discounted"><%= number_to_currency(beer.price) %></span></p>
+	<p>HALF OFF for <span class="twitter">@<%= @twitter %></span>!</p>
+	<% else %>
 	<p><%= number_to_currency(beer.price) %></p>
+	<% end %>
       </div>
       <%= button_to("Buy now!", beer_order_path(beer)) %>
     </div>
