@@ -9,6 +9,7 @@ gem "mysql2", '< 0.3'
 gem 'nifty-generators'
 gem 'json'
 gem 'chimps'
+gem 'heroku'
 
 # Use unicorn as the web server
 # gem 'unicorn'
