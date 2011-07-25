@@ -10,6 +10,7 @@ gem 'nifty-generators'
 gem 'json'
 gem 'chimps'
 gem 'heroku'
+gem 'rake'
 
 # Use unicorn as the web server
 # gem 'unicorn'

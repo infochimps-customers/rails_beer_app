@@ -96,3 +96,4 @@ DEPENDENCIES
   mysql2 (< 0.3)
   nifty-generators
   rails (= 3.0.7)
+  rake
