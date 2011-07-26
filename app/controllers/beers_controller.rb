@@ -1,4 +1,7 @@
 class BeersController < ApplicationController
+
+  before_filter :authenticate, :except => [:index, :show]
+  
   def index
     @beers = Beer.all
   end

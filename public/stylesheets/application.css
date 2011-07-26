@@ -112,6 +112,7 @@ section.beer .buyme .price span.discounted {
   padding: 20px 40px;
   border: solid 1px black;
   margin-top: 20px;
+  font-size: x-small;
 }
 
 table.admin tr {
@@ -156,4 +157,76 @@ div.response {
 span.demo_param {
     font-weight: bold;
     color: red;
+    font-size: large;
+    }
+
+.about {
+    overflow: auto;
+    margin-bottom: 25px;
+    }
+
+.about .image {
+    float:left;
+    width:200px;
+}
+
+.about .explanation {
+    float:right;
+    width:600px;
+}    
+
+.speaker {
+    width: 300px;
+    display: inline;
+    }
+
+.speakers {
+    overflow: auto;
+    }
+
+.speaker img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    }
+
+.speaker span.twitter {
+    margin-left:100px;
+    }
+
+.speaker.dhruv {
+    float: left;
+    margin-left: 100px;
+    }
+
+.speaker.winnie {
+    float: right;
+    margin-right: 100px;
+    }
+
+table.twitter tbody {
+    margin-bottom: 20px;
+    }
+
+.params {
+    overflow: auto;
+}
+
+.params table {
+    font-size: small;
+    }
+
+.params table.ips {
+    float: left;
+    }
+
+.params table.twitters {
+    float: right;
+    }
+
+p.url {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    white-space: pre;
     }

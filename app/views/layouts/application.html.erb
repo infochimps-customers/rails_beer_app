@@ -18,10 +18,12 @@
     <% if @api_responses.present? %>
     <div id="api_responses">
       <h3>Infochimps API Requests</h3>
+      <p>You can directly visit these URLs with your browser or with <tt>curl</tt>.  Try it!</p>
       <ul>
 	<% @api_responses.each_pair do |full_path, response_data| %>
 	<li>
-	  <p><b><%= response_data[:code] %></b>: <%= full_path %></p>
+	  <% url = File.join("http://api.infochimps.com", full_path) %>
+	  <p><b><%= response_data[:code] %></b>: <%= link_to(url, url) %></p>
 	  <div class="response"><%= highlight_demo_params(JSON.pretty_generate(response_data[:body])) %></div>
 	</li>
 	<% end %>

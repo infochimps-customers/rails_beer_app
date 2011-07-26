@@ -20,6 +20,9 @@ class ApplicationController < ActionController::Base
     render :homepage
   end
 
+  def about
+  end
+
   protected
 
   # For demonstration purposes we want to be able to pretend as though
@@ -74,16 +77,21 @@ class ApplicationController < ActionController::Base
 
   def determine_discount
     influence = infochimps_api_request("/social/network/tw/influence/trstrank", :screen_name => effective_twitter_screen_name)
-    p influence
     case 
     when influence['trstrank'].to_f > 4.0
       @discount = :free
-      p 'free'
     when influence['trstrank'].to_f > 1.0
       @discount = :half
-      p 'half'
     else
       @discount = nil
     end
   end
+
+  protected
+  def authenticate
+    authenticate_or_request_with_http_basic do |username, password|
+      (username == 'rex_banner') && (password == 'beer_baron')
+    end
+  end
+  
 end
