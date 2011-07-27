@@ -27,6 +27,16 @@ a {
   margin-top: 20px;
 }
 
+#topbar {
+    font-size: small;
+    width:200px;
+    background-color: #fff;
+    padding: 10px 10px;
+    border: solid 1px black;
+    margin-top: 20px;
+    float: right;
+}
+
 #flash_notice, #flash_error, #flash_alert {
   padding: 5px 8px;
   margin: 10px 0;
@@ -89,16 +99,30 @@ section.beer .content {
     width:690px;
     }
 
-section.beer .buyme {
-    float:right;
-    width:200px;
+.buyme .discount {
+    font-size: x-large;
     }
 
-section.beer .buyme .price {
-    float:left;
-    width:100px;
+.buyme .price {
     font-size: x-large;
     font-weight: bold;
+    float: right;
+    margin-right: 50px;
+    margin-top: 25px;
+    }
+
+.buyme textarea.tweet {
+    width: 600px;
+    height:60px;
+    font-size: x-large;
+    }
+
+.buyme .price .amount {
+    margin-right: 50px;
+    }
+
+.buyme .price input {
+    width: 200px;
     }
 
 section.beer .buyme .price span.discounted {

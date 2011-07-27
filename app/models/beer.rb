@@ -5,4 +5,9 @@ class Beer < ActiveRecord::Base
   validates :description, :presence => true
   validates :price,       :presence => true, :numericality => { :greater_than => 0 }
   validates :image_link,  :presence => true
+
+  def self.default_beer
+    first
+  end
+  
 end

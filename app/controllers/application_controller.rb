@@ -1,22 +1,27 @@
 class ApplicationController < ActionController::Base
 
-  INFOCHIMPS_APIKEY = "api_test-W1cipwpcdu9Cbd9pmm8D4Cjc469"
-  
   protect_from_forgery
 
+  # Version 1 of the homepage features a default beer.
   def homepage_v1
-    @featured_beer = default_beer
+    @featured_beer = Beer.default_beer
     render :homepage
   end
 
+  # Version 2 of the homepage features a beer based on the visitor's
+  # geolocation as determined from their IP address by querying
+  # Infochimps' API.
   def homepage_v2
-    @featured_beer = featured_beer_from_ip
+    find_featured_beer_from_geolocation
     render :homepage
   end
 
+  # Version 3 of the homepage additionally tries to determine whether
+  # a discount should be applied to the featured beer as determined by
+  # the influence of the current Twitter user.
   def homepage_v3
-    @featured_beer = featured_beer_from_ip
-    determine_discount
+    find_featured_beer_from_geolocation
+    determine_discount_from_twitter_influence
     render :homepage
   end
 
@@ -25,33 +30,19 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  # For demonstration purposes we want to be able to pretend as though
-  # we're visiting from a different IP address than we really are...
-  def effective_ip
-    params[:ip] || request.ip
-  end
-
-  # Instead of dealing with the whole mess of OAuth, for demonstration
-  # purposes we fake the current user's Twitter identity from a URL
-  # param.
-  def effective_twitter_screen_name
-    @twitter = params[:twitter]
-  end
-
   # Make an Infochimps API request to the given path with the given
   # query params.
   #
   # Will return a Hash of results or {} if the request fails somehow.
-  def infochimps_api_request path, query
+  def infochimps_api_request path, query_params
     require 'net/http'
-    all_params = query.merge(:apikey => INFOCHIMPS_APIKEY)
+    all_params = query_params.merge(:apikey => 'oscon2011-mZreq8EE0MzmMUeKE52OYYYV469')
     query_string = [].tap do |qs|
       all_params.each_pair do |key, value|
         qs << [CGI::escape(key.to_s), CGI::escape(value.to_s)].join('=')
       end
     end.join("&")
     full_path = [path, query_string].join('?')
-    Rails.logger.debug("GET #{full_path}")
     result = Net::HTTP.start("api.infochimps.com") do |http|
       http.get(full_path)
     end
@@ -61,21 +52,17 @@ class ApplicationController < ActionController::Base
     @api_responses[full_path][:body] = JSON.parse(result.body)
   end
 
-  # The beer we should feature if we can't think of a better one
-  # dynamically.
-  def default_beer
-    Beer.first
-  end
-  
-  # Decide what beer to feature based on the demographics of the
-  # effective IP address of the request.
-  def featured_beer_from_ip
-    geolocation = infochimps_api_request("/web/analytics/ip_mapping/digital_element/geo", :ip => effective_ip)
-    city        = (geolocation["city"] or return default_beer)
-    Beer.where("metro_name LIKE ?", city).first || default_beer
+  # Decide what beer to feature by matching the "city" corresponding
+  # to the visitor's IP address against the metro_name of our beers.
+  def find_featured_beer_from_geolocation
+    geolocation    = infochimps_api_request("/web/analytics/ip_mapping/digital_element/geo", :ip => effective_ip)
+    city           = (geolocation["city"] or return Beer.default_beer)
+    @featured_beer = (Beer.where("metro_name LIKE ?", city).first || Beer.default_beer)
   end
 
-  def determine_discount
+  # Determine whether to apply a discount based on the current user's
+  # Twitter influence.
+  def determine_discount_from_twitter_influence
     influence = infochimps_api_request("/social/network/tw/influence/trstrank", :screen_name => effective_twitter_screen_name)
     case 
     when influence['trstrank'].to_f > 4.0
@@ -87,7 +74,19 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  protected
+  # For demonstration purposes we want to be able to pretend as though
+  # we're visiting from a different IP address than we really are...
+  def effective_ip
+    @ip = (params[:ip] || request.ip)
+  end
+
+  # Instead of dealing with the whole mess of OAuth, for demonstration
+  # purposes we fake the current user's Twitter identity from a URL
+  # param.
+  def effective_twitter_screen_name
+    @twitter = params[:twitter]
+  end
+  
   def authenticate
     authenticate_or_request_with_http_basic do |username, password|
       (username == 'rex_banner') && (password == 'beer_baron')
@@ -95,3 +94,4 @@ class ApplicationController < ActionController::Base
   end
   
 end
+

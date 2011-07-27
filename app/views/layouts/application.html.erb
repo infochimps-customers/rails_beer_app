@@ -9,6 +9,18 @@
   </head>
   <body>
     <div id="container">
+      <div id="topbar">
+	<a href="/">About</a>
+	|
+	<a href="/homepage/v1">V1</a>
+	|
+	<a href="/homepage/v2">V2</a>
+	|
+	<a href="/homepage/v3">V3</a>
+	|
+	<a href="/admin">Admin</a>
+      </div>
+      
       <% flash.each do |name, msg| %>
       <%= content_tag :div, msg, :id => "flash_#{name}" %>
       <% end %>
