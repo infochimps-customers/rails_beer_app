@@ -1,1 +1,13 @@
-Added a README.
+To get started with this app
+
+  $ git clone git://github.com/infochimps/oscon_beer_app.git oscon_beer_app
+  $ cd oscon_beer_app
+  $ bundle install
+  $ touch config/database.yml
+
+Now edit the database.yml file to point at a MySQL database, as per
+usual.
+
+  $ rails server
+
+Surf to localhost:3000 and checkout the about page ;)
