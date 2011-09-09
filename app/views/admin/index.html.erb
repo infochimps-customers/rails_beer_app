@@ -30,7 +30,7 @@
   <tr>
     <td class="name"><%= customer[:name] %></td>
     <td class="twitter"><%= link_to_twitter_profile(customer[:twitter]) %></td>
-    <td class="strong_links"><%= customer[:strong_links].map { |screen_name| link_to_twitter_profile(screen_name) }.join(', ').html_safe %></td>
+    <td class="strong_links"><%= customer[:strong_links].map { |user_id| link_to_twitter_profile(user_id) }.join(', ').html_safe %></td>
   </tr>
   <% end %>
 </table>
