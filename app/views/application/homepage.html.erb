@@ -4,4 +4,19 @@
 
 <%= render @featured_beer, :locals => { :discount => @discount } %>
 
+<% if @nearby_bars %>
+  <h3>Have a drink nearby!</h3>
+  <div id="beer_map_container">
+    <div id="beer_map" style="width:100%; height:100%"></div>
+  </div>
+  <% content_for :additional_javascripts do %>
+  <script type="text/javascript">
+    var NEARBY_BARS = <%= @nearby_bars.to_json.html_safe %>;
+    initialize_beer_map(<%= @latitude %>, <%= @longitude %>);
+  </script>
+  <% end %>
+<% end %>  
+
 <p>See <%= link_to("all our beers", beers_path) %>.</p>
+
+

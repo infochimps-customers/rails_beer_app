@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   def homepage_v4
     find_featured_beer_from_geolocation
     determine_discount_from_twitter_influence
-    find_nearby_beer_stores
+    find_nearby_bars
     render :homepage
   end
 
@@ -65,6 +65,8 @@ class ApplicationController < ActionController::Base
   # to the visitor's IP address against the metro_name of our beers.
   def find_featured_beer_from_geolocation
     geolocation    = infochimps_api_request("/web/analytics/ip_mapping/digital_element/geo", :ip => effective_ip)
+    @latitude      = geolocation['latitude']
+    @longitude     = geolocation['longitude']
     city           = (geolocation["city"] or return Beer.default_beer)
     @featured_beer = (Beer.where("metro_name LIKE ?", city).first || Beer.default_beer)
   end
@@ -85,7 +87,11 @@ class ApplicationController < ActionController::Base
 
   # Uses the visitor's current location (as measured from the IP) to
   # find stores that sell beer nearby.
-  def find_nearby_beer_stores
+  def find_nearby_bars
+    Rails.logger.debug "NEARBY BARS"
+    return unless @latitude.present? && @longitude.present?
+    nearby_bars = infochimps_api_request("/geo/location/foursquare/places/search", "f._type" => "business.bar_or_pub", "g.latitude" => @latitude, "g.longitude" => @longitude, "g.radius" => 3000)
+    @nearby_bars = nearby_bars['results'] || []
   end
 
   # For demonstration purposes we want to be able to pretend as though

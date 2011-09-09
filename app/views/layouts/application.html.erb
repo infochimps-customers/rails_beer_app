@@ -3,7 +3,7 @@
   <head>
     <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
     <%= stylesheet_link_tag "application" %>
-    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag "http://maps.googleapis.com/maps/api/js?sensor=false", :defaults %>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
@@ -44,5 +44,6 @@
       </ul>
     </div>
     <% end %>
+    <%= yield :additional_javascripts %>
   </body>
 </html>
