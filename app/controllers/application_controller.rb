@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   # Will return a Hash of results or {} if the request fails somehow.
   def infochimps_api_request path, query_params
     require 'net/http'
-    all_params = query_params.merge(:apikey => 'oscon2011-mZreq8EE0MzmMUeKE52OYYYV469')
+    all_params = query_params.merge(:apikey => 'demo_apps-3RSa-boH1d5lb9awYqyWLgH3A69')
     query_string = [].tap do |qs|
       all_params.each_pair do |key, value|
         qs << [CGI::escape(key.to_s), CGI::escape(value.to_s)].join('=')

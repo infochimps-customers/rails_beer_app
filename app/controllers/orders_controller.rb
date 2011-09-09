@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  
   def index
     @orders = Order.all
   end
@@ -12,7 +13,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    flash[:error] = "<p>Silly chimp!  You can't really buy beer from this website!.</p><p>But please join Winnie and Dhruv for drinks at 6pm today at <a href='http://www.yelp.com/biz/doug-fir-lounge-portland#query:douglas%20fir'>Doug Fir Lounge</a>.".html_safe
+    flash[:error] = "<p>Silly chimp!  You can't really buy beer from this website!</p>".html_safe
     redirect_to :back
   end
 

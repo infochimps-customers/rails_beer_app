@@ -1,48 +1,26 @@
-<% title "About this OSCON 2011 Beer App" %>
+<% title "Infochimps Beer App" %>
 
 <div class="about">
   <div class="image">
     <a href="http://www.infochimps.com"><img src="/images/infochimps-logo.png" width="225px" /></a>
   </div>
   <div class="explanation">
-    <p>Infochimps is a place to find data that can be read by both people and machines. We seek to help developers, analysts and researchers find, share and sell this data. It is available in a <a href="http://www.infochimps.com/datasets">downloadable format</a> they can host themselves, as well as a hosted format they can access with a <a href="http://www.infochimps.com/apis">data API key</a>.
+    <p>Infochimps is a place to find data that can be read by both people and machines. We seek to help developers, analysts and researchers find, share and sell this data. It is available in a <a href="http://www.infochimps.com/datasets">downloadable format</a> they can host themselves, as well as a hosted format they can access with an <a href="http://www.infochimps.com/apis">API key</a>.
   </div>
 </div>
 
-<div class="speakers">
-  <div class="speaker dhruv">
-    <div class="image">
-      <img src="/images/dhruv_bansal.jpg" width="150px" />
-      <span class="twitter"><%= link_to_twitter_profile('dhruvbansal') %></span>
-    </div>
-    <div class="explanation">
-      <p>Dhruv Bansal is co-founder and CSO of Infochimps.</p>.
-    </div>
-  </div>
+<h2>How does this App work?</h2>
+<p>This website is a Ruby on Rails application.  You can find the complete source code on <a target="_blank" href="http://github.com/infochimps/rails_beer_app">GitHub</a>.
 
-  <div class="speaker winnie">
-    <div class="image">
-      <img src="/images/winnie_hsia.jpg" width="150px" />
-      <span class="twitter"><%= link_to_twitter_profile('misswinnie') %></span>
-    </div>
-    <div class="explanation">
-      <p>Winnie Hsia is community manager at Infochimps.</p>.
-    </div>
-  </div>
-</div>
+<p>You can find a list of all the APIs used in this application at <a href="http://www.infochimps.com/tags/beer_app">Infochimps</a>.</p>
 
-<h2>Understand this Code</h2>
-<p>This website is a Ruby on Rails application.  You can find the complete source code on <a target="_blank" href="http://github.com/infochimps/oscon_beer_app">GitHub</a>.
+<p>If you don't already have your own Infochimps API key you can <a href="http://www.infochimps.com/signup">sign up</a> for an account and get one.  In the meantime you can use the following key, created especially for this demo app:</p>
 
-<p>You can find a list of all the APIs used in this application at <a href="http://www.infochimps.com/tags/oscon2011">Infochimps</a>.</p>
-
-<p>If you don't already have your own Infochimps API key you can <a href="http://www.infochimps.com/signup">sign up</a> for an account and get one.  In the meantime you can use the following key, created especially for OSCON 2011:</p>
-
-<p class="url">oscon2011-mZreq8EE0MzmMUeKE52OYYYV469</p>
+<p class="url">demo_apps-3RSa-boH1d5lb9awYqyWLgH3A69</p>
 
 <div class="params">
   <p>You can simulate a visit from a particular IP address by passing the <tt>ip</tt> parameter in the URL.  You can simulate a visit from a particular Twitter user by passing the <tt>twitter</tt> parameter in the URL.</p>
-  <p class="url">http://oscon2011beerapp.heroku.com/homepage/v3?<b>ip</b>=92.131.1.255&<b>twitter</b>=barackobama</span>
+  <p class="url">http://beer.infochimps.com/homepage/v3?<b>ip</b>=92.131.1.255&<b>twitter</b>=barackobama</span>
   <table border="1" class="ips">
     <tr>
       <th>City</th>
