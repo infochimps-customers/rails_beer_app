@@ -25,6 +25,15 @@ class ApplicationController < ActionController::Base
     render :homepage
   end
 
+  # Version 4 of the homepage additionally displays a map of stores
+  # nearby to the user's location that sell beer.
+  def homepage_v4
+    find_featured_beer_from_geolocation
+    determine_discount_from_twitter_influence
+    find_nearby_beer_stores
+    render :homepage
+  end
+
   def about
   end
 
@@ -72,6 +81,11 @@ class ApplicationController < ActionController::Base
     else
       @discount = nil
     end
+  end
+
+  # Uses the visitor's current location (as measured from the IP) to
+  # find stores that sell beer nearby.
+  def find_nearby_beer_stores
   end
 
   # For demonstration purposes we want to be able to pretend as though
