@@ -34,6 +34,8 @@ class ApplicationController < ActionController::Base
     render :homepage
   end
 
+  # The about page which functions as the *actual* homepage of this
+  # Rails app.
   def about
   end
 
@@ -105,7 +107,11 @@ class ApplicationController < ActionController::Base
   def effective_twitter_screen_name
     @twitter = params[:twitter]
   end
-  
+
+  # Used to block parts of the site we don't want you to see.
+  #
+  # And, yes, we're aware of the futility of preventing you from
+  # viewing pages on a site when you can easily see the source code...
   def authenticate
     authenticate_or_request_with_http_basic do |username, password|
       (username == 'rex_banner') && (password == 'beer_baron')
