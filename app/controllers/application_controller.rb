@@ -91,7 +91,7 @@ class ApplicationController < ActionController::Base
   # find stores that sell beer nearby.
   def find_nearby_bars
     return unless @latitude.present? && @longitude.present?
-    nearby_bars = infochimps_api_request("/geo/location/foursquare/places/search", "f._type" => "business.bar_or_pub", "g.latitude" => @latitude, "g.longitude" => @longitude, "g.radius" => 5000)
+    nearby_bars = infochimps_api_request("/geo/location/foursquare/places/search", "l.obj_type" => "business.bar_or_pub", "g.latitude" => @latitude, "g.longitude" => @longitude, "g.radius" => 5000)
     @nearby_bars = nearby_bars['results'] || []
   end
 
